@@ -16,7 +16,7 @@
 - [JavaCore](https://dunwu.github.io/javacore/) - Java 核心技术
 - [前端技术指南](https://github.com/dunwu/frontend-tutorial) - 即使是后端工程师，也难免会接触到前端技术。前端技术五花八门，如：React、Vue、Angular、Webpack、ES6、Babel、Node.js 等等。不说掌握，至少也应该知道这些技术是什么。
 
-## 🏗 架构设计
+## 🎨 架构设计
 
 > [架构设计](docs/architecture) 整理架构设计方面的一些学习总结和心得。
 
@@ -25,23 +25,12 @@
 - [网站的高可用架构](docs/architecture/网站的高可用架构.md)
 - [网站的伸缩性架构](docs/architecture/网站的伸缩性架构.md)
 - [网站的可扩展架构](docs/architecture/网站的可扩展架构.md)
-- [网站的安全架构](docs/architecture/网站的安全架构.md) - 关键词：XSS、CSRF、SQL 注入、DoS、消息摘要、加密算法、证书
+- [网站的安全架构](docs/architecture/网站的安全架构.md)
 - [网站典型故障](docs/architecture/网站典型故障.md)
 
-## ✨ 系统原理
-
-> [系统原理](docs/theory) - 理论联系实际，分析系统问题的理论支持
-
-- [分布式技术面试题](docs/theory/distributed-interview.md)
-- [分布式基础理论](docs/theory/distributed-base.md)
-- [分布式会话](docs/theory/distributed-session.md)
-- [分布式事务](docs/theory/distributed-transaction.md)
-- [分布式缓存](docs/theory/distributed-cache.md)
-- [分布式锁](docs/theory/distributed-lock.md)
-- [分布式 ID](docs/theory/distributed-id.md)
-- [负载均衡](docs/theory/load-balance.md)
-
 ## ⭐️ 主流技术
+
+> [主流技术](docs/technology) 汇集 JavaWeb 开发常用的各种主流技术。
 
 ### Web 框架
 
@@ -68,9 +57,10 @@
 ### 缓存
 
 - [缓存面经](docs/technology/cache/cache-interview.md)
-- [缓存原理](docs/technology/cache/cache-theory.md)
-- [Redis](https://github.com/dunwu/db-tutorial/tree/master/docs/nosql/redis)
-- Ehcache
+- [全面理解缓存原理](docs/technology/cache/cache-theory.md)
+- [Redis](docs/technology/cache/redis.md)
+- [Ehcache](docs/technology/cache/ehcache.md)
+- [Caffeine](docs/technology/cache/caffeine.md)
 
 ### RPC
 
@@ -98,7 +88,7 @@
 - [JavaEE 之 Filter 和 Listener](docs/javaee/javaee-filter-listener.md)
 - [JavaEE 之 Cookie 和 Session](docs/javaee/javaee-cookie-sesion.md)
 
-## 🕸 网络通信
+## 🌏 网络通信
 
 - **面试**
   - [网络通信面经](docs/network/network-interview.md)
