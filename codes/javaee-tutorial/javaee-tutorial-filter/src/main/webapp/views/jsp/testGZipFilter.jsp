@@ -11,14 +11,14 @@
 		body {
 			margin-top: 2px;
 		}
-		
+
 		table {
 			margin-top: 10px;
 			border-collapse: collapse;
 			border: 1px solid #000000;
 			width: 350px;
 		}
-		
+
 		td {
 			border: 1px solid #000000;
 			font-size: 12px;
@@ -30,18 +30,18 @@
 <body>
 <%!
 	public void test(JspWriter out, String url) throws Exception {
-		
+
 		// 模拟支持 GZIP 的浏览器
 		URLConnection connGzip = new URL(url).openConnection();
 		connGzip.setRequestProperty("Accept-Encoding", "gzip");
 		int lengthGzip = connGzip.getContentLength();
-		
+
 		// 模拟不支持 GZIP 的浏览器
 		URLConnection connCommon = new URL(url).openConnection();
 		int lengthCommon = connCommon.getContentLength();
-		
+
 		double rate = new Double(lengthGzip) / lengthCommon;
-		
+
 		out.println("<table>");
 		out.println("	<tr>");
 		out.println("		<td colspan=3>网址: " + url + "</td>");
@@ -55,13 +55,8 @@
 	}
 %>
 <%
-	String[] urls = {
-			"http://localhost:9899/views/js/dojo.js",
-			"http://localhost:9899/views/images/image.jsp",
-			"http://localhost:9899/views/images/winter.jpg",
-			"http://www.baidu.com",
-			"http://www.google.cn",
-	};
+	String[] urls = {"http://localhost:9899/views/js/dojo.js", "http://localhost:9899/views/images/image.jsp",
+		"http://localhost:9899/views/images/winter.jpg", "http://www.baidu.com", "http://www.google.cn",};
 	for (String url : urls) {
 		test(out, url);
 	}

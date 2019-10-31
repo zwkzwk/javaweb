@@ -11,31 +11,33 @@ import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 
 /**
  * 接收广播消息示例
+ *
  * @author Zhang Peng
  */
 public class BroadcastConsumer {
-    public static void main(String[] args) throws Exception {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("example_group_name");
-        consumer.setNamesrvAddr(RocketConfig.HOST);
 
-        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
+	public static void main(String[] args) throws Exception {
+		DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("example_group_name");
+		consumer.setNamesrvAddr(RocketConfig.HOST);
 
-        //set to broadcast mode
-        consumer.setMessageModel(MessageModel.BROADCASTING);
+		consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
 
-        consumer.subscribe("TopicTest", "TagA || TagC || TagD");
+		// set to broadcast mode
+		consumer.setMessageModel(MessageModel.BROADCASTING);
 
-        consumer.registerMessageListener(new MessageListenerConcurrently() {
+		consumer.subscribe("TopicTest", "TagA || TagC || TagD");
 
-            @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
-                ConsumeConcurrentlyContext context) {
-                System.out.printf(Thread.currentThread().getName() + " Receive New Messages: " + msgs + "%n");
-                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-            }
-        });
+		consumer.registerMessageListener(new MessageListenerConcurrently() {
 
-        consumer.start();
-        System.out.printf("Broadcast Consumer Started.%n");
-    }
+			@Override
+			public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
+				System.out.printf(Thread.currentThread().getName() + " Receive New Messages: " + msgs + "%n");
+				return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+			}
+		});
+
+		consumer.start();
+		System.out.printf("Broadcast Consumer Started.%n");
+	}
+
 }

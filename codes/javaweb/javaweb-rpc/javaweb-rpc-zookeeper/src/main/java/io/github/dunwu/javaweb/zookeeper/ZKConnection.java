@@ -13,36 +13,39 @@ import org.apache.zookeeper.ZooKeeper.States;
  */
 public class ZKConnection {
 
-    // declare zookeeper instance to access ZooKeeper ensemble
-    private ZooKeeper zoo;
-    private static final String HOST = "localhost";
-    final CountDownLatch connectedSignal = new CountDownLatch(1);
+	private static final String HOST = "localhost";
 
-    // Method to connect zookeeper ensemble.
-    public ZooKeeper connect(String host) throws IOException, InterruptedException {
+	final CountDownLatch connectedSignal = new CountDownLatch(1);
 
-        zoo = new ZooKeeper(host, 5000, new Watcher() {
-            public void process(WatchedEvent we) {
-                if (we.getState() == KeeperState.SyncConnected) {
-                    connectedSignal.countDown();
-                }
-            }
-        });
+	// declare zookeeper instance to access ZooKeeper ensemble
+	private ZooKeeper zoo;
 
-        connectedSignal.await();
-        return zoo;
-    }
+	public static void main(String[] args) throws IOException, InterruptedException {
+		ZKConnection zkConnection = new ZKConnection();
+		ZooKeeper zk = zkConnection.connect(HOST);
+		States state = zk.getState();
+		System.out.println("ZooKeeper isAlive:" + state.isAlive());
+		zk.close();
+	}
 
-    // Method to disconnect from zookeeper server
-    public void close() throws InterruptedException {
-        zoo.close();
-    }
+	// Method to connect zookeeper ensemble.
+	public ZooKeeper connect(String host) throws IOException, InterruptedException {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        ZKConnection zkConnection = new ZKConnection();
-        ZooKeeper zk = zkConnection.connect(HOST);
-        States state = zk.getState();
-        System.out.println("ZooKeeper isAlive:" + state.isAlive());
-        zk.close();
-    }
+		zoo = new ZooKeeper(host, 5000, new Watcher() {
+			public void process(WatchedEvent we) {
+				if (we.getState() == KeeperState.SyncConnected) {
+					connectedSignal.countDown();
+				}
+			}
+		});
+
+		connectedSignal.await();
+		return zoo;
+	}
+
+	// Method to disconnect from zookeeper server
+	public void close() throws InterruptedException {
+		zoo.close();
+	}
+
 }

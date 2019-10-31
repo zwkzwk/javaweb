@@ -3,20 +3,20 @@
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+				 pageEncoding="UTF-8" %>
 <%@ page import="java.net.URLEncoder" %>
 <%
 	// 编码，解决中文乱码
 	String name = URLEncoder.encode(request.getParameter("name"), "utf-8");
-	
+
 	// 设置 nameCookie 和 urlCookie cookie
 	Cookie nameCookie = new Cookie("name", name);
 	Cookie urlCookie = new Cookie("url", request.getParameter("url"));
-	
+
 	// 设置cookie过期时间为24小时。
 	nameCookie.setMaxAge(60 * 60 * 24);
 	urlCookie.setMaxAge(60 * 60 * 24);
-	
+
 	// 在响应头部添加cookie
 	response.addCookie(nameCookie);
 	response.addCookie(urlCookie);

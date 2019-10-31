@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" %>
 <html>
 <head><title>JSP Scriptlets</title>
 </head>
@@ -6,7 +6,7 @@
 <%
 	int num = 10;
 	int result = 1;
-	for(int i=1; i<=num; i++){
+	for (int i = 1; i <= num; i++) {
 		result *= i;
 		out.println("第" + i + "步运算：" + result + " <br/>");
 	}

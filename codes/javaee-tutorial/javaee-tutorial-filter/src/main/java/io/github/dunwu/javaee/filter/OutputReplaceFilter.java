@@ -1,22 +1,15 @@
 package io.github.dunwu.javaee.filter;
 
+import io.github.dunwu.javaee.filter.wrapper.HttpCharacterResponseWrapper;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
-
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
-
-import io.github.dunwu.javaee.filter.wrapper.HttpCharacterResponseWrapper;
 
 /**
  * @author <a href="mailto:forbreak@163.com">Zhang Peng</a>
- * @date 2017/3/27.
+ * @since 2017/3/27.
  */
 public class OutputReplaceFilter extends MyFilter {
 
@@ -36,7 +29,7 @@ public class OutputReplaceFilter extends MyFilter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+		throws IOException, ServletException {
 		logger.info("{} 开始做过滤处理", this.getClass().getName());
 
 		// 自定义的 response
@@ -59,4 +52,5 @@ public class OutputReplaceFilter extends MyFilter {
 		out.write(output);
 		out.println("<!-- Generated at " + new java.util.Date() + " -->");
 	}
+
 }

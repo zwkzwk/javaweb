@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+				 pageEncoding="UTF-8" %>
 <%@ page import="java.text.SimpleDateFormat,java.util.Date" %>
 <html>
 <head>
@@ -17,8 +17,7 @@
 <h1>使用SimpleDateFormat格式化日期</h1>
 <%
 	Date dNow = new Date();
-	SimpleDateFormat ft =
-			new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	out.print("<h2 align=\"center\">" + ft.format(dNow) + "</h2>");
 %>
 </body>

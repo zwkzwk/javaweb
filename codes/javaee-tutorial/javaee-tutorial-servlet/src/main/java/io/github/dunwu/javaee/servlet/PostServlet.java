@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +14,12 @@ public class PostServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2112378505872783022L;
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().println("请使用 POST 方式提交数据。");
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -64,15 +61,13 @@ public class PostServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		out
-				.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
 		out.println("<HEAD><TITLE>感谢您提交信息</TITLE>");
 		out.println("<style>");
 		out.println("body, div, td, input {font-size:12px; margin:0px; }");
 		out.println(".line {margin:2px; }");
-		out
-				.println(".leftDiv {width:110px; float:left; height:22px; line-height:22px; font-weight:bold; }");
+		out.println(".leftDiv {width:110px; float:left; height:22px; line-height:22px; font-weight:bold; }");
 		out.println(".rightDiv {height:22px; line-height:22px; }");
 		out.println(".button {");
 		out.println("	color:#fff;");
@@ -83,8 +78,7 @@ public class PostServlet extends HttpServlet {
 		out.println("	border-style:solid;");
 		out.println("	border-width:1px;");
 		out.println("	border-color:#9cf #159 #159 #9cf;");
-		out
-				.println("	background:#69c url(/servlet/images/bg-btn-blue.gif) repeat-x;");
+		out.println("	background:#69c url(/servlet/images/bg-btn-blue.gif) repeat-x;");
 		out.println("</style>");
 		out.println("</HEAD>");
 
@@ -98,8 +92,7 @@ public class PostServlet extends HttpServlet {
 
 		out.println("		<div class='line'>");
 		out.println("			<div align='left' class='leftDiv'>您的密码：</div>");
-		out.println("			<div align='left' class='rightDiv'>" + password
-				+ "</div>");
+		out.println("			<div align='left' class='rightDiv'>" + password + "</div>");
 		out.println("		</div>");
 
 		out.println("		<div class='line'>");
@@ -123,18 +116,18 @@ public class PostServlet extends HttpServlet {
 		out.println("			<div align='left' class='leftDiv'>您的兴趣：</div>");
 		out.println("			<div align='left' class='rightDiv'>");
 
-		if (interesting != null)
+		if (interesting != null) {
 			for (String str : interesting) {
 				out.println(str + ", ");
 			}
+		}
 
 		out.println("			</div>");
 		out.println("		</div>");
 
 		out.println("		<div class='line'>");
 		out.println("			<div align='left' class='leftDiv'>自我描述：</div>");
-		out.println("			<div align='left' class='rightDiv'>" + description
-				+ "</div>");
+		out.println("			<div align='left' class='rightDiv'>" + description + "</div>");
 		out.println("		</div>");
 
 		out.println("		<div class='line'>");
@@ -145,8 +138,8 @@ public class PostServlet extends HttpServlet {
 		out.println("		<div class='line'>");
 		out.println("			<div align='left' class='leftDiv'></div>");
 		out.println("			<div align='left' class='rightDiv'>");
-		out
-				.println("				<br/><input type='button' name='btn' value='返回上一页' onclick='history.go(-1); ' class='button'><br/>");
+		out.println(
+			"				<br/><input type='button' name='btn' value='返回上一页' onclick='history.go(-1); ' class='button'><br/>");
 		out.println("			</div>");
 		out.println("		</div>");
 
@@ -156,4 +149,5 @@ public class PostServlet extends HttpServlet {
 		out.flush();
 		out.close();
 	}
+
 }

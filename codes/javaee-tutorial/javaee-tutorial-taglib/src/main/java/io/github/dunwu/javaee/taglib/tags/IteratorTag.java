@@ -1,7 +1,6 @@
 package io.github.dunwu.javaee.taglib.tags;
 
 import java.util.Collection;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 

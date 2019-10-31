@@ -1,7 +1,7 @@
 package io.github.dunwu.javaee.filter;
 
+import io.github.dunwu.javaee.filter.wrapper.GZipResponseWrapper;
 import java.io.IOException;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -9,16 +9,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import io.github.dunwu.javaee.filter.wrapper.GZipResponseWrapper;
-
 /**
  * @author <a href="mailto:forbreak@163.com">Zhang Peng</a>
- * @date 2017/3/27.
+ * @since 2017/3/27.
  */
 public class GZipFilter extends MyFilter {
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+		throws IOException, ServletException {
 
 		logger.info("{} 开始做过滤处理", this.getClass().getName());
 
@@ -36,10 +35,10 @@ public class GZipFilter extends MyFilter {
 
 			// 输出压缩数据
 			gzipResponse.finishResponse();
-
 		} else {
 			// 否则, 不压缩
 			chain.doFilter(httpServletRequest, httpServletResponse);
 		}
 	}
+
 }

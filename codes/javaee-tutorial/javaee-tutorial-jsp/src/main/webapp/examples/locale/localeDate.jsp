@@ -5,10 +5,7 @@
 	String title = "Locale Specific Dates";
 	//Get the client's Locale
 	Locale locale = request.getLocale();
-	String date = DateFormat.getDateTimeInstance(
-			DateFormat.FULL,
-			DateFormat.SHORT,
-			locale).format(new Date());
+	String date = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT, locale).format(new Date());
 %>
 <html>
 <head>

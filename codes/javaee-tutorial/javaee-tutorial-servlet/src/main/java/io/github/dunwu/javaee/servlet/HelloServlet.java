@@ -1,109 +1,108 @@
 /**
- * The Apache License 2.0
- * Copyright (c) 2016 Zhang Peng
+ * The Apache License 2.0 Copyright (c) 2016 Zhang Peng
  */
 package io.github.dunwu.javaee.servlet;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * @author <a href="mailto:forbreak@163.com">Zhang Peng</a>
- * @date 2016/12/23.
+ * @since 2016/12/23.
  */
 public class HelloServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
-    /**
-     * Constructor of the object.
-     */
-    public HelloServlet() {
-        super();
-    }
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Destruction of the servlet. <br>
-     */
-    public void destroy() {
-        super.destroy(); // Just puts "destroy" string in log
-        // Put your code here
-    }
+	/**
+	 * Constructor of the object.
+	 */
+	public HelloServlet() {
+		super();
+	}
 
-    /**
-     * The doGet method of the servlet. <br>
-     *
-     * This method is called when a form has its tag value method equals to get.
-     *
-     * @param request the request send by the client to the server
-     * @param response the response send by the server to the client
-     * @throws ServletException if an error occurred
-     * @throws IOException if an error occurred
-     */
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
 
-        // 设置 request，response 编码方式
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
+	/**
+	 * The doPost method of the servlet. <br>
+	 * <p>
+	 * This method is called when a form has its tag value method equals to post.
+	 *
+	 * @param request  the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException      if an error occurred
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // 设置文档类型
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+		this.doGet(request, response);
+	}
 
-        // 输出到客户端浏览器
-        out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-        out.println("<HTML>");
-        out.println("<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">");
-        out.println("<HEAD><TITLE>A Servlet</TITLE></HEAD>");
-        out.println("  <BODY>");
+	/**
+	 * The doGet method of the servlet. <br>
+	 * <p>
+	 * This method is called when a form has its tag value method equals to get.
+	 *
+	 * @param request  the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException      if an error occurred
+	 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String requestURI = request.getRequestURI();
-        out.println("<form action='" + requestURI + "' method='post'>");
-        out.println("请输入您的名字：<input type='text' name='name' />");
-        out.println("<input type='submit' />");
-        out.println("</form>");
-        out.println("");
+		// 设置 request，response 编码方式
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 
-        // 取浏览器提交的 name 参数
-        String name = request.getParameter("name");
+		// 设置文档类型
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
 
-        // 如果 name 不为空且长度大于 0
-        if(name != null && name.trim().length() > 0){
-            out.println("您好, <b>" + name + "</b>. 欢迎来到 Java Web 世界. ");
-        }
+		// 输出到客户端浏览器
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<HTML>");
+		out.println("<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">");
+		out.println("<HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		out.println("  <BODY>");
 
-        out.println("  </BODY>");
-        out.println("</HTML>");
-        out.flush();
-        out.close();
-    }
+		String requestURI = request.getRequestURI();
+		out.println("<form action='" + requestURI + "' method='post'>");
+		out.println("请输入您的名字：<input type='text' name='name' />");
+		out.println("<input type='submit' />");
+		out.println("</form>");
+		out.println("");
 
-    /**
-     * The doPost method of the servlet. <br>
-     *
-     * This method is called when a form has its tag value method equals to post.
-     *
-     * @param request the request send by the client to the server
-     * @param response the response send by the server to the client
-     * @throws ServletException if an error occurred
-     * @throws IOException if an error occurred
-     */
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+		// 取浏览器提交的 name 参数
+		String name = request.getParameter("name");
 
-        this.doGet(request, response);
-    }
+		// 如果 name 不为空且长度大于 0
+		if (name != null && name.trim().length() > 0) {
+			out.println("您好, <b>" + name + "</b>. 欢迎来到 Java Web 世界. ");
+		}
 
-    /**
-     * Initialization of the servlet. <br>
-     *
-     * @throws ServletException if an error occure
-     */
-    public void init() throws ServletException {
-        // Put your code here
-    }
+		out.println("  </BODY>");
+		out.println("</HTML>");
+		out.flush();
+		out.close();
+	}
+
+	/**
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occure
+	 */
+	public void init() throws ServletException {
+		// Put your code here
+	}
+
 }

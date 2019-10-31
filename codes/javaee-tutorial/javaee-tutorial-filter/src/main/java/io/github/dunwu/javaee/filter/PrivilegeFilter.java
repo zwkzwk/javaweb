@@ -1,21 +1,14 @@
 package io.github.dunwu.javaee.filter;
 
+import io.github.dunwu.javaee.filter.exception.AccountException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-
-import io.github.dunwu.javaee.filter.exception.AccountException;
 
 /**
  * @author <a href="mailto:forbreak@163.com">Zhang Peng</a>
- * @date 2017/3/27.
+ * @since 2017/3/27.
  */
 public class PrivilegeFilter extends MyFilter {
 
@@ -36,7 +29,7 @@ public class PrivilegeFilter extends MyFilter {
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-			throws IOException, ServletException {
+		throws IOException, ServletException {
 
 		logger.info("{} 开始做过滤处理", this.getClass().getName());
 
@@ -80,4 +73,5 @@ public class PrivilegeFilter extends MyFilter {
 	public void destroy() {
 		pp = null;
 	}
+
 }

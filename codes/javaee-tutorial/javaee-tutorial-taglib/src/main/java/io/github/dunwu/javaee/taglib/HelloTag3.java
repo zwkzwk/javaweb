@@ -5,35 +5,34 @@ package io.github.dunwu.javaee.taglib;
 
 import java.io.IOException;
 import java.io.StringWriter;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 /**
  * @author <a href="mailto:forbreak@163.com">Zhang Peng</a>
- * @date 2017/4/3.
+ * @since 2017/4/3.
  */
 public class HelloTag3 extends SimpleTagSupport {
 
-    private String message;
+	StringWriter sw = new StringWriter();
 
-    public void setMessage(String msg) {
-        this.message = msg;
-    }
+	private String message;
 
-    StringWriter sw = new StringWriter();
+	public void setMessage(String msg) {
+		this.message = msg;
+	}
 
-    public void doTag() throws JspException, IOException {
-        if (message != null) {
-            /* 从属性中使用消息 */
-            JspWriter out = getJspContext().getOut();
-            out.println(message);
-        } else {
-            /* 从内容体中使用消息 */
-            getJspBody().invoke(sw);
-            getJspContext().getOut().println(sw.toString());
-        }
-    }
+	public void doTag() throws JspException, IOException {
+		if (message != null) {
+			/* 从属性中使用消息 */
+			JspWriter out = getJspContext().getOut();
+			out.println(message);
+		} else {
+			/* 从内容体中使用消息 */
+			getJspBody().invoke(sw);
+			getJspContext().getOut().println(sw.toString());
+		}
+	}
 
 }

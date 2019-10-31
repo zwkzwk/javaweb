@@ -17,27 +17,29 @@ import org.apache.kafka.streams.state.KeyValueStore;
  * Kafka 流示例 消费者配置参考：https://kafka.apache.org/documentation/#streamsconfigs
  */
 public class StreamDemo {
-    private static final String HOST = "localhost:9092";
 
-    public static void main(String[] args) {
-        // 1. 指定流的配置
-        Properties config = new Properties();
-        config.put(StreamsConfig.APPLICATION_ID_CONFIG, "wordcount-application");
-        config.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
-        config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+	private static final String HOST = "localhost:9092";
 
-        // 设置流构造器
-        StreamsBuilder builder = new StreamsBuilder();
-        KStream<String, String> textLines = builder.stream("TextLinesTopic");
-        KTable<String, Long> wordCounts = textLines
-            .flatMapValues(textLine -> Arrays.asList(textLine.toLowerCase().split("\\W+")))
-            .groupBy((key, word) -> word)
-            .count(Materialized.<String, Long, KeyValueStore<Bytes, byte[]>>as("counts-store"));
-        wordCounts.toStream().to("WordsWithCountsTopic", Produced.with(Serdes.String(), Serdes.Long()));
+	public static void main(String[] args) {
+		// 1. 指定流的配置
+		Properties config = new Properties();
+		config.put(StreamsConfig.APPLICATION_ID_CONFIG, "wordcount-application");
+		config.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
+		config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+		config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
-        // 根据流构造器和流配置初始化 Kafka 流
-        KafkaStreams streams = new KafkaStreams(builder.build(), config);
-        streams.start();
-    }
+		// 设置流构造器
+		StreamsBuilder builder = new StreamsBuilder();
+		KStream<String, String> textLines = builder.stream("TextLinesTopic");
+		KTable<String, Long> wordCounts = textLines
+			.flatMapValues(textLine -> Arrays.asList(textLine.toLowerCase().split("\\W+")))
+			.groupBy((key, word) -> word)
+			.count(Materialized.<String, Long, KeyValueStore<Bytes, byte[]>>as("counts-store"));
+		wordCounts.toStream().to("WordsWithCountsTopic", Produced.with(Serdes.String(), Serdes.Long()));
+
+		// 根据流构造器和流配置初始化 Kafka 流
+		KafkaStreams streams = new KafkaStreams(builder.build(), config);
+		streams.start();
+	}
+
 }

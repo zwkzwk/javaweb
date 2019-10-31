@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" import="java.util.Calendar" contentType="text/html; charset=utf-8" %>
+<%@ page import="java.util.Locale" %>
 <%
 	Locale locale = request.getLocale();
 
@@ -33,10 +34,11 @@
 	<meta http-equiv="description" content="This is my page">
 </head>
 <body>
-	<table>
-		<tr>
-			<td><%= greeting %></td>
-		</tr>
-	</table>
+<table>
+	<tr>
+		<td><%= greeting %>
+		</td>
+	</tr>
+</table>
 </body>
 </html>

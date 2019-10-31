@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" %>
 <html>
 <head><title>JSP Scriptlets</title>
 </head>
@@ -11,7 +11,7 @@
 今我来思，<br/>
 雨雪霏霏。<br/>
 <%
-	if("return".equals(param)){
+	if ("return".equals(param)) {
 		return;
 	}
 %>

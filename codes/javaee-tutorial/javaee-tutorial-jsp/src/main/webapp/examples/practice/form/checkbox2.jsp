@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+				 pageEncoding="UTF-8" %>
 <%@ page import="java.util.Enumeration" %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 	</tr>
 	<%
 		Enumeration paramNames = request.getParameterNames();
-		
+
 		while (paramNames.hasMoreElements()) {
 			String paramName = (String) paramNames.nextElement();
 			out.print("<tr><td>" + paramName + "</td>\n");

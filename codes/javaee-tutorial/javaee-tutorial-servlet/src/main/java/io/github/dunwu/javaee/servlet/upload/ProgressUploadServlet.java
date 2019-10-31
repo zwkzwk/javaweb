@@ -1,18 +1,11 @@
 package io.github.dunwu.javaee.servlet.upload;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -21,8 +14,7 @@ public class ProgressUploadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -4935921396709035718L;
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 上传状态
 		UploadStatus status = new UploadStatus();
@@ -34,8 +26,7 @@ public class ProgressUploadServlet extends HttpServlet {
 		request.getSession(true).setAttribute("uploadStatus", status);
 
 		// Apache 上传工具
-		ServletFileUpload upload = new ServletFileUpload(
-				new DiskFileItemFactory());
+		ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
 
 		// 设置 listener
 		upload.setProgressListener(listener);
@@ -43,11 +34,10 @@ public class ProgressUploadServlet extends HttpServlet {
 		try {
 			List itemList = upload.parseRequest(request);
 
-			for (Iterator it = itemList.iterator(); it.hasNext();) {
+			for (Iterator it = itemList.iterator(); it.hasNext(); ) {
 				FileItem item = (FileItem) it.next();
 				if (item.isFormField()) {
-					System.out.println("FormField: " + item.getFieldName()
-							+ " = " + item.getString());
+					System.out.println("FormField: " + item.getFieldName() + " = " + item.getString());
 				} else {
 					System.out.println("File: " + item.getName());
 
@@ -80,15 +70,13 @@ public class ProgressUploadServlet extends HttpServlet {
 		}
 	}
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		response.setHeader("Cache-Control", "no-store");
 		response.setHeader("Pragrma", "no-cache");
 		response.setDateHeader("Expires", 0);
 
-		UploadStatus status = (UploadStatus) request.getSession(true)
-				.getAttribute("uploadStatus");
+		UploadStatus status = (UploadStatus) request.getSession(true).getAttribute("uploadStatus");
 
 		if (status == null) {
 			response.getWriter().println("没有上传信息");
@@ -111,8 +99,7 @@ public class ProgressUploadServlet extends HttpServlet {
 		double timeLeft = totalTime - time;
 
 		// 已完成的百分比
-		int percent = (int) (100 * (double) status.getBytesRead() / (double) status
-				.getContentLength());
+		int percent = (int) (100 * (double) status.getBytesRead() / (double) status.getContentLength());
 
 		// 已完成数 单位：M
 		double length = ((double) status.getBytesRead()) / 1024 / 1024;
@@ -121,9 +108,8 @@ public class ProgressUploadServlet extends HttpServlet {
 		double totalLength = ((double) status.getContentLength()) / 1024 / 1024;
 
 		// 格式：百分比||已完成数(M)||文件总长度(M)||传输速率(K)||已用时间(s)||估计总时间(s)||估计剩余时间(s)||正在上传第几个文件
-		String value = percent + "||" + length + "||" + totalLength + "||"
-				+ velocity + "||" + time + "||" + totalTime + "||" + timeLeft
-				+ "||" + status.getItems();
+		String value = percent + "||" + length + "||" + totalLength + "||" + velocity + "||" + time + "||" + totalTime
+			+ "||" + timeLeft + "||" + status.getItems();
 
 		response.getWriter().println(value);
 	}

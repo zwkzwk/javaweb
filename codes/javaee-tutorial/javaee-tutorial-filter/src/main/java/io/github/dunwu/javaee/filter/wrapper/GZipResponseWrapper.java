@@ -3,14 +3,13 @@ package io.github.dunwu.javaee.filter.wrapper;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
 /**
  * @author <a href="mailto:forbreak@163.com">Zhang Peng</a>
- * @date 2017/3/27.
+ * @since 2017/3/27.
  */
 public class GZipResponseWrapper extends HttpServletResponseWrapper {
 
@@ -29,15 +28,16 @@ public class GZipResponseWrapper extends HttpServletResponseWrapper {
 	}
 
 	public ServletOutputStream getOutputStream() throws IOException {
-		if (gzipOutputStream == null)
+		if (gzipOutputStream == null) {
 			gzipOutputStream = new GZipOutputStream(response);
+		}
 		return gzipOutputStream;
 	}
 
 	public PrintWriter getWriter() throws IOException {
-		if (writer == null)
-			writer = new PrintWriter(new OutputStreamWriter(
-					new GZipOutputStream(response), "UTF-8"));
+		if (writer == null) {
+			writer = new PrintWriter(new OutputStreamWriter(new GZipOutputStream(response), "UTF-8"));
+		}
 		return writer;
 	}
 
@@ -50,9 +50,12 @@ public class GZipResponseWrapper extends HttpServletResponseWrapper {
 	}
 
 	public void finishResponse() throws IOException {
-		if (gzipOutputStream != null)
+		if (gzipOutputStream != null) {
 			gzipOutputStream.close();
-		if (writer != null)
+		}
+		if (writer != null) {
 			writer.close();
+		}
 	}
+
 }

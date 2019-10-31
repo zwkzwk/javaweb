@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+				 pageEncoding="UTF-8" %>
 <%@ page import="java.util.Date" %>
 <%
 	// 获取session创建时间
 	Date createTime = new Date(session.getCreationTime());
 	// 获取最后访问页面的时间
 	Date lastAccessTime = new Date(session.getLastAccessedTime());
-	
+
 	String note = "再次访问";
 	Integer visitCount = 0;
 	String visitCountKey = "visitCount";
 	String userIDKey = "userID";
 	String userID = "ABCD";
-	
+
 	// 检测网页是否由新的访问用户
 	if (session.isNew()) {
 		note = "第一次访问";

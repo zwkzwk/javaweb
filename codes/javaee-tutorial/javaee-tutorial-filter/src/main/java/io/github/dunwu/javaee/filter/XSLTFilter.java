@@ -3,13 +3,6 @@ package io.github.dunwu.javaee.filter;
 import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.Source;
@@ -20,7 +13,7 @@ import javax.xml.transform.stream.StreamSource;
 
 /**
  * @author <a href="mailto:forbreak@163.com">Zhang Peng</a>
- * @date 2017/3/28.
+ * @since 2017/3/28.
  */
 public class XSLTFilter extends MyFilter {
 
@@ -34,7 +27,7 @@ public class XSLTFilter extends MyFilter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+		throws IOException, ServletException {
 
 		logger.info("{} 开始做过滤处理", this.getClass().getName());
 
@@ -46,7 +39,7 @@ public class XSLTFilter extends MyFilter {
 
 		// 请求的 xml 文件
 		Source xmlSource = new StreamSource(servletContext
-				.getRealPath(httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath() + "", "")));
+			.getRealPath(httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath() + "", "")));
 		try {
 
 			// 转换器工厂
@@ -67,9 +60,9 @@ public class XSLTFilter extends MyFilter {
 			httpServletResponse.setContentLength(charArrayWriter.toString().length());
 			PrintWriter out = httpServletResponse.getWriter();
 			out.write(charArrayWriter.toString());
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 }

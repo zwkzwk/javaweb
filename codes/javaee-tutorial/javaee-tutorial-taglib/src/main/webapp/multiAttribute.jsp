@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://www.victorzhang.com/tags" prefix="taglib"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://www.victorzhang.com/tags" prefix="taglib" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-body {
-	font-size: 12px; 
-}
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		body {
+			font-size: 12px;
+		}
+	</style>
 </head>
 <body>
 

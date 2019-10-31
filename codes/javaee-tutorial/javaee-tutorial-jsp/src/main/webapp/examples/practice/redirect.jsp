@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+				 pageEncoding="UTF-8" %>
 <html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 
 <%
 	// 重定向到新地址
-	String site = new String("http://www.baidu.com");
+	String site = "http://www.baidu.com";
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
 	response.setHeader("Location", site);
 %>

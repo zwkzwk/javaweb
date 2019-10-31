@@ -9,66 +9,63 @@ import org.apache.zookeeper.data.Stat;
 
 public class ZKGetData {
 
-    private static ZooKeeper zk;
-    private static ZKConnection conn;
-    private static final String HOST = "localhost";
+	private static final String HOST = "localhost";
 
-    public static Stat existsZnode(String path) throws
-        KeeperException, InterruptedException {
-        return zk.exists(path, true);
-    }
+	private static ZooKeeper zk;
 
-    public static void main(String[] args) throws InterruptedException {
-        String path = "/MyFirstZnode";
-        final CountDownLatch connectedSignal = new CountDownLatch(1);
+	private static ZKConnection conn;
 
-        try {
-            conn = new ZKConnection();
-            zk = conn.connect(HOST);
-            Stat stat = existsZnode(path);
+	public static void main(String[] args) throws InterruptedException {
+		String path = "/MyFirstZnode";
+		final CountDownLatch connectedSignal = new CountDownLatch(1);
 
-            if (stat != null) {
-                byte[] b = zk.getData(path, new Watcher() {
-                    public void process(WatchedEvent we) {
+		try {
+			conn = new ZKConnection();
+			zk = conn.connect(HOST);
+			Stat stat = existsZnode(path);
 
-                        if (we.getType() == Event.EventType.None) {
-                            switch (we.getState()) {
-                                case Expired:
-                                    connectedSignal.countDown();
-                                    break;
-                            }
+			if (stat != null) {
+				byte[] b = zk.getData(path, new Watcher() {
+					public void process(WatchedEvent we) {
 
-                        } else {
-                            String path = "/MyFirstZnode";
+						if (we.getType() == Event.EventType.None) {
+							switch (we.getState()) {
+								case Expired:
+									connectedSignal.countDown();
+									break;
+							}
+						} else {
+							String path = "/MyFirstZnode";
 
-                            try {
-                                byte[] bn = zk.getData(path,
-                                    false, null);
-                                String data = new String(bn,
-                                    "UTF-8");
-                                System.out.println(data);
-                                connectedSignal.countDown();
+							try {
+								byte[] bn = zk.getData(path, false, null);
+								String data = new String(bn, "UTF-8");
+								System.out.println(data);
+								connectedSignal.countDown();
+							} catch (Exception ex) {
+								System.out.println(ex.getMessage());
+							}
+						}
+					}
+				}, null);
 
-                            } catch (Exception ex) {
-                                System.out.println(ex.getMessage());
-                            }
-                        }
-                    }
-                }, null);
+				String data = new String(b, "UTF-8");
+				System.out.println(data);
+				connectedSignal.await();
+			} else {
+				System.out.println("Node does not exists");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
 
-                String data = new String(b, "UTF-8");
-                System.out.println(data);
-                connectedSignal.await();
+	public static Stat existsZnode(String path) throws KeeperException, InterruptedException {
+		return zk.exists(path, true);
+	}
 
-            } else {
-                System.out.println("Node does not exists");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (conn != null) {
-                conn.close();
-            }
-        }
-    }
 }

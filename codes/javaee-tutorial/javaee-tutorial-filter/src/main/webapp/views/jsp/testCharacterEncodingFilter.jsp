@@ -8,7 +8,7 @@
 		body, input, textarea {
 			font-size: 12px;
 		}
-		
+
 		textarea {
 			width: 400px;
 			height: 50px;
@@ -21,7 +21,7 @@
 ${ param.text }
 </pre>
 <form action="${ param.request.requestURL }" method="post"><textarea
-		name="text">${ param.text }</textarea> <br/>
+	name="text">${ param.text }</textarea> <br/>
 	<input type="submit"></form>
 
 </body>

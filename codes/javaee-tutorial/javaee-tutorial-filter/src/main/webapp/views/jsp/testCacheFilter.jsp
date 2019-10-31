@@ -8,12 +8,12 @@
 		body {
 			font-size: 12px;
 		}
-		
+
 		div {
 			float: left;
 			margin-left: 20px;
 		}
-		
+
 		a {
 			color: #0000FF;
 		}
@@ -38,32 +38,33 @@
 </div>
 
 <script type="text/javascript">
-	function setCookie(name, value) {
-		document.cookie = name + '=' + value;
-	}
-	function getCookie(name) {
-		var search = name + "="
-		if (document.cookie.length > 0) {
-			offset = document.cookie.indexOf(search)
-			if (offset != -1) {
-				offset += search.length
-				end = document.cookie.indexOf(";", offset)
-				if (end == -1) end = document.cookie.length
-				return unescape(document.cookie.substring(offset, end))
-			}
-			else return ""
-		}
-	}
-	if (getCookie('username')) {
-		// 已经登录  隐藏登录菜单
-		document.getElementById('loginDiv').innerText = '欢迎你, ' + getCookie('username');
-		// 显示登录后的操作
-		document.getElementById('controlDiv').style.display = 'block';
-	}
-	if (getCookie('role') == 'admin') {
-		// 为管理员 显示管理员操作
-		document.getElementById('adminDiv').style.display = 'block';
-	}
+  function setCookie(name, value) {
+    document.cookie = name + '=' + value;
+  }
+
+  function getCookie(name) {
+    var search = name + "=";
+    if (document.cookie.length > 0) {
+      offset = document.cookie.indexOf(search);
+      if (offset != -1) {
+        offset += search.length;
+        end = document.cookie.indexOf(";", offset);
+        if (end == -1) end = document.cookie.length;
+        return unescape(document.cookie.substring(offset, end))
+      } else return ""
+    }
+  }
+
+  if (getCookie('username')) {
+    // 已经登录  隐藏登录菜单
+    document.getElementById('loginDiv').innerText = '欢迎你, ' + getCookie('username');
+    // 显示登录后的操作
+    document.getElementById('controlDiv').style.display = 'block';
+  }
+  if (getCookie('role') == 'admin') {
+    // 为管理员 显示管理员操作
+    document.getElementById('adminDiv').style.display = 'block';
+  }
 </script>
 
 </body>

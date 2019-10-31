@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%! int day = 1; %>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>02.JSP语法 - if...else示例</title>
+	<meta charset="utf-8">
+	<title>02.JSP语法 - if...else示例</title>
 </head>
 <body>
 <h3>if...else示例</h3>

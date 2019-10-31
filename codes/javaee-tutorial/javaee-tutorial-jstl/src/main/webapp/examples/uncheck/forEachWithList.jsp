@@ -1,8 +1,10 @@
-<%@ page language="java" import="java.util.*, com.helloweenvsfei.jstl.bean.*" contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" import="com.helloweenvsfei.jstl.bean.*, java.util.ArrayList"
+				 contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	List<Person> personList = new ArrayList<Person>();
-	
+
 	int i = 1;
 
 	Person person = new Person();
@@ -17,7 +19,7 @@
 	person.setCity("北京");
 
 	personList.add(person);
-	
+
 	Person person2 = new Person();
 	person2.setId(i++);
 	person2.setName("李四");
@@ -30,7 +32,7 @@
 	person2.setCity("北京");
 
 	personList.add(person2);
-	
+
 	Person person3 = new Person();
 	person3.setId(i++);
 	person3.setName("王五");
@@ -43,7 +45,7 @@
 	person3.setCity("北京");
 
 	personList.add(person3);
-	
+
 	Person person4 = new Person();
 	person4.setId(i++);
 	person4.setName("王二麻子");
@@ -54,9 +56,9 @@
 	person4.setMobile("13820080808");
 	person4.setTelephone("20054879");
 	person4.setCity("北京");
-	
+
 	personList.add(person4);
-		
+
 	Person person5 = new Person();
 	person5.setId(i++);
 	person5.setName("王二麻子");
@@ -67,9 +69,9 @@
 	person5.setMobile("13820080808");
 	person5.setTelephone("20054879");
 	person5.setCity("北京");
-	
+
 	personList.add(person5);
-	
+
 	Person person6 = new Person();
 	person6.setId(i++);
 	person6.setName("王二麻子");
@@ -80,9 +82,9 @@
 	person6.setMobile("13820080808");
 	person6.setTelephone("20054879");
 	person6.setCity("北京");
-	
+
 	personList.add(person6);
-	
+
 	Person person7 = new Person();
 	person7.setId(i++);
 	person7.setName("王二麻子");
@@ -93,32 +95,34 @@
 	person7.setMobile("13820080808");
 	person7.setTelephone("20054879");
 	person7.setCity("北京");
-	
+
 	personList.add(person7);
-	
+
 	request.setAttribute("personList", personList);
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<style>
-table {
-	border-collapse: collapse;
-	border: 1px solid #000000;
-}
-td {
-	border: 1px solid #000000; 
-	font-size: 12px; 
-	padding: 2px; 
-}
-.title td {
-	text-align: center;
-	background: #cccccc; 
-}
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			border: 1px solid #000000;
+		}
+
+		td {
+			border: 1px solid #000000;
+			font-size: 12px;
+			padding: 2px;
+		}
+
+		.title td {
+			text-align: center;
+			background: #cccccc;
+		}
+	</style>
 </head>
 <body>
 
@@ -136,7 +140,7 @@ td {
 	</tr>
 
 	<c:forEach items="${ personList }" var="person">
-	
+
 		<tr>
 			<td>${ person.id }</td>
 			<td>${ person.name }</td>
@@ -148,7 +152,7 @@ td {
 			<td>${ person.mobile }</td>
 			<td>${ person.telephone }</td>
 		</tr>
-		
+
 	</c:forEach>
 
 </table>
@@ -171,7 +175,7 @@ td {
 	</tr>
 
 	<c:forEach items="${ personList }" var="person" varStatus="varStatus">
-	
+
 		<tr bgcolor="${ varStatus.index % 2 == 1 ? '#EFEFEF' : '#FFFFFF' }">
 			<td>${ varStatus.current.id }</td>
 			<td>${ varStatus.current.name }</td>
@@ -183,7 +187,7 @@ td {
 			<td>${ varStatus.current.mobile }</td>
 			<td>${ varStatus.current.telephone }</td>
 		</tr>
-		
+
 	</c:forEach>
 
 </table>

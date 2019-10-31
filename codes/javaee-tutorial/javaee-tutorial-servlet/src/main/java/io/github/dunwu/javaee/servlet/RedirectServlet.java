@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,20 +23,18 @@ public class RedirectServlet extends HttpServlet {
 		map.put("/download/01.mp3", 0);
 	}
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String filename = request.getParameter("filename");
 
-		if(filename != null){
+		if (filename != null) {
 			// 取下载次数
 			int hit = map.get(filename);
 			// 下载次数 + 1 后保存
-			map.put(filename, ++ hit);
+			map.put(filename, ++hit);
 			// 重定向到文件
 			response.sendRedirect(request.getContextPath() + filename);
-		}
-		else{
+		} else {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -55,11 +52,12 @@ public class RedirectServlet extends HttpServlet {
 			out.println("		<td><b>下载</b></td>");
 			out.println("	</tr>");
 
-			for(Entry<String, Integer> entry : map.entrySet()){
+			for (Entry<String, Integer> entry : map.entrySet()) {
 				out.println("<tr>");
 				out.println("	<td>" + entry.getKey() + "</td>");
 				out.println("	<td>" + entry.getValue() + "</td>");
-				out.println("	<td><a href='" + request.getRequestURI() + "?filename=" + entry.getKey() + "' target='_blank' onclick='location=location; '>下载</a></td>");
+				out.println("	<td><a href='" + request.getRequestURI() + "?filename=" + entry.getKey()
+					+ "' target='_blank' onclick='location=location; '>下载</a></td>");
 				out.println("</tr>");
 			}
 
@@ -70,7 +68,6 @@ public class RedirectServlet extends HttpServlet {
 			out.flush();
 			out.close();
 		}
-
 	}
 
 	@Override
